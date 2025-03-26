@@ -1,0 +1,9 @@
+atlassian-python-api
+openai
+chromadb
+beautifulsoup4
+python-dotenv
+fastapi
+uvicorn
+pydantic
+python-multipart
