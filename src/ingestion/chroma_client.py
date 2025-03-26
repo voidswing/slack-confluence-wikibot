@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_chroma_collection(collection_name="confluence_collection"):
+def get_chroma_collection(collection_name: str = "confluence_collection"):
     client = chromadb.PersistentClient(path="./chromadb")
     openai_ef = embedding_functions.OpenAIEmbeddingFunction(
         api_key=os.getenv("OPENAI_API_KEY"),
