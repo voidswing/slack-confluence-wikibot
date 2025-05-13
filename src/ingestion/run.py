@@ -173,7 +173,7 @@ def main():
     parser.add_argument("--limit", type=int, default=5000, help="처리할 페이지 최대 개수")
     parser.add_argument("--after-date", type=str, help="YYYY-MM-DD 형식으로, 지정 날짜 이후로 생성 또는 수정된 페이지만 처리")
     parser.add_argument("--space", type=str, default=SPACE_KEY, help="처리할 Confluence 공간 키")
-    parser.add_argument("--recent", action="store_true", help="최근 5일 이내에 생성 또는 수정된 페이지만 처리")
+    parser.add_argument("--recent", action="store_true", help="최근 하루 이내에 생성 또는 수정된 페이지만 처리")
 
     args = parser.parse_args()
 
@@ -194,8 +194,8 @@ def main():
     if args.after_date:
         after_date = datetime.strptime(args.after_date, "%Y-%m-%d")
     elif args.recent:
-        # 현재 시간에서 5일 전 날짜 계산
-        after_date = datetime.now(timezone.utc) - timedelta(days=5)
+        # 현재 시간에서 1일 전 날짜 계산
+        after_date = datetime.now(timezone.utc) - timedelta(days=1)
 
     if args.all:
         ingest_all_pages(

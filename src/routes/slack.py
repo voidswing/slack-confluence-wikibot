@@ -48,6 +48,7 @@ async def process_event(payload: Dict[str, Any]) -> None:
         return
 
     text = event["text"].strip()
+    print(text)
 
     if text.startswith(WIKI_COMMAND_PREFIX):
         channel = event["channel"]

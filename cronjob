@@ -1,0 +1,1 @@
+0 0 * * * root cd /app && /usr/local/bin/python -m src.ingestion.run --all --recent >> /var/log/cron.log 2>&1
