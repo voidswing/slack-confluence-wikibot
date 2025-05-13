@@ -18,7 +18,19 @@ OPENAI_EMBEDDING_MODEL=CHANGE_ME
 SLACK_TOKEN=CHANGE_ME
 ```
 
-### 2. Docker 이미지 빌드 및 컨테이너 실행
+### 2. 기존 컨테이너 중지 및 삭제
+
+코드 변경 후 다시 실행하기 위해 기존 컨테이너를 중지하고 삭제합니다.
+
+```bash
+# 실행 중인 컨테이너 중지
+docker stop wiki-container
+
+# 컨테이너 삭제
+docker rm wiki-container
+```
+
+### 3. Docker 이미지 빌드 및 컨테이너 실행
 
 다음 명령어로 Docker 이미지를 빌드하고 컨테이너를 실행하세요.
 
@@ -27,7 +39,7 @@ docker build -t wiki-fastapi-dev .
 docker run -d -p 8000:8000 -v $(pwd):/app --name wiki-container wiki-fastapi-dev
 ```
 
-### 3. Confluence 데이터 벡터DB에 학습시키기
+### 4. Confluence 데이터 벡터DB에 학습시키기
 
 실행 중인 Docker 컨테이너 내부에서 다음 명령어를 실행하여 Confluence 데이터를 벡터DB에 학습시킵니다.
 
@@ -35,7 +47,7 @@ docker run -d -p 8000:8000 -v $(pwd):/app --name wiki-container wiki-fastapi-dev
 docker exec -it wiki-container python -m src.ingestion.run --all
 ```
 
-### 4. Slack Events API 활성화
+### 5. Slack Events API 활성화
 
 슬랙에서 봇이 메시지에 반응하도록 하려면 [Slack Events API](https://api.slack.com/apis/events-api)를 활성화하세요.
 
