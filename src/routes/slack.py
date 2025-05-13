@@ -122,11 +122,12 @@ async def handle_summary_command(channel: str, thread_ts: str) -> None:
                 "role": "system",
                 "content": (
                     "당신은 슬랙 스레드 내용을 요약하는 도우미입니다. "
-                    "주어진 슬랙 스레드의 대화 내용을 간결하게 요약해주세요. "
-                    "요약은 다음 형식을 따라야 합니다:\n\n"
-                    "1. 스레드 전체 주제 또는 목적\n"
-                    "2. 주요 논의 사항 (불릿 포인트로 3-5개)\n"
-                    "3. 결론 또는 다음 단계 (있는 경우)\n\n"
+                    "주어진 슬랙 스레드의 대화 내용을 간결하게 핵심 포인트만 요약해주세요. "
+                    "대화 내용, 정보 공유, 질문과 답변 등 다양한 형태의 메시지를 포함할 수 있습니다. "
+                    "요약은 불릿 포인트 형식으로 작성하고, 각 포인트는 간결하고 명확하게 작성해주세요.\n\n"
+                    "• 핵심 포인트 1\n"
+                    "• 핵심 포인트 2\n"
+                    "• 핵심 포인트 3\n\n"
                     "매우 중요: 슬랙에서 볼드체는 별표(*) 한 개만 사용합니다. 절대 별표 두 개(**)를 사용하지 마세요.\n"
                     "예시: *이것은 볼드체입니다* (O), **이것은 잘못된 형식입니다** (X)\n"
                     "`코드`, ```코드 블록```등을 적절히 사용해 요약을 보기 좋게 작성하세요."
@@ -149,5 +150,5 @@ async def handle_summary_command(channel: str, thread_ts: str) -> None:
         emoji=":memo:"
     )
 
-    summary_message = f"*스레드 요약*\n\n{summary}"
+    summary_message = f"{summary}"
     slacks.post_message(slack_bot=slack_bot, message=summary_message, ts=thread_ts)
